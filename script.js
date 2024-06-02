@@ -23,22 +23,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const jsonObject = data.message;
             const breedListContainer = document.getElementById('breed-list');
             for (let breed in jsonObject) {
-                const breedListItem = document.createElement('li');
-                const breedList = document.createElement('ul');
-                if (Array.isArray(jsonObject[breed]) && jsonObject[breed].length > 0) {
-                    console.log(`Breed: ${breed}, Sub-breeds: ${jsonObject[breed].join(', ')}`);
-                    const subBreeds = jsonObject[breed].map(subBreed => `<li>${subBreed}</li>`).join('');
-                    breedList.innerHTML = subBreeds;
-                    breedListItem.innerHTML = `<strong>${breed}</strong>`;
-                    breedListItem.appendChild(breedList);
-                }
-                else{
-                    console.log(`Breed: ${breed}`);
-                    breedListItem.textContent = breed;
-                }
+                const breedListItem = document.createElement('div');
+                breedListItem.className = 'breed-item';
+                
+                const breedName = document.createElement('div');
+                breedName.textContent = breed.charAt(0).toUpperCase() + breed.slice(1);
+                breedName.className = 'breed-name';
+                breedListItem.appendChild(breedName);
+
+                const breedImage = document.createElement('img');
+                breedImage.className = 'breed-image';
+                breedImage.style.display = 'none';
+                breedListItem.appendChild(breedImage);
+
                 breedListItem.addEventListener('click', () => {
-                    fetchBreedImage(breed); // Fetch image of the breed
+                    fetchBreedImage(breed, breedImage); // Fetch image of the breed
                 });
+
                 breedListContainer.appendChild(breedListItem);
             }
         });
@@ -58,7 +59,7 @@ function extractBreedFromUrl(url) {
 // Function to add HTML content
 function addHtmlContent(imageUrl) {
     var breed = extractBreedFromUrl(imageUrl); 
-    var htmlContent = `<div>The dog breed is ${breed}</div>`;
+    var htmlContent = `<div>AWW look at this cute ${breed}</div>`;
     document.getElementsByClassName('description')[0].innerHTML += htmlContent;
     console.log("The dog breed is " + breed);
 }
@@ -84,14 +85,31 @@ async function fetchRandomDogImage() {
     }
 }
 
-async function fetchBreedImage(breed) {
+// async function fetchBreedImage(breed) {
+//     try {
+//         const response = await fetch(`https://dog.ceo/api/breed/${breed}/images/random`);
+//         const data = await response.json();
+
+//         if (data.status === "success") {
+//             const imageUrl = data.message;
+//             displayImageInModal(imageUrl);
+//         } else {
+//             throw new Error('Failed to fetch the image');
+//         }
+//     } catch (error) {
+//         console.error('Error fetching image:', error);
+//     }
+// }
+
+async function fetchBreedImage(breed, breedImageElement) {
     try {
         const response = await fetch(`https://dog.ceo/api/breed/${breed}/images/random`);
         const data = await response.json();
 
         if (data.status === "success") {
             const imageUrl = data.message;
-            displayImageInModal(imageUrl);
+            breedImageElement.src = imageUrl;
+            breedImageElement.style.display = 'block';
         } else {
             throw new Error('Failed to fetch the image');
         }
@@ -99,6 +117,7 @@ async function fetchBreedImage(breed) {
         console.error('Error fetching image:', error);
     }
 }
+
 
 
 function displayImageInModal(imageUrl) {

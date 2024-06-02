@@ -6,6 +6,10 @@ nav{
 
 }
 
+header{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 nav ul {
     list-style-type: none; /* Remove default bullet points */
     margin: 0;
@@ -45,11 +49,11 @@ html, body {
     align-items: center; /* Center horizontally */
 }
 
-.reload-button {
-    background-color: #000000; /* Green */
+.bone {
+    background-color: #000000; 
     border: none;
     color: white;
-    padding: 10px 20px; /* Adjust padding */
+    padding: 10px 20px; 
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -58,6 +62,7 @@ html, body {
     cursor: pointer;
     border-radius: 8px;
 }
+
 
 
 .description {
