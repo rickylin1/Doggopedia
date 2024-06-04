@@ -2,6 +2,8 @@
 //COMPUTER VISION OF APP TELLING U WHAT DOG IT IS WHEN U USE CAMERA?
 
 // Listen for the DOMContentLoaded event
+const dogBreedsArray = [];
+
 document.addEventListener('DOMContentLoaded', function() {
     // Code to execute when the DOM is fully loaded
 
@@ -26,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const jsonObject = data.message;
             const breedListContainer = document.getElementById('breed-list');
             for (let breed in jsonObject) {
+                dogBreedsArray.push(breed);
                 const breedListItem = document.createElement('div');
                 breedListItem.className = 'breed-item';
                 
@@ -45,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 breedListContainer.appendChild(breedListItem);
             }
+            console.log(dogBreedsArray)
         });
 });
 
@@ -64,7 +68,6 @@ function addHtmlContent(imageUrl) {
     var breed = extractBreedFromUrl(imageUrl); 
     var htmlContent = `<div>AWW look at this cute ${breed}</div>`;
     document.getElementsByClassName('description')[0].innerHTML += htmlContent;
-    console.log("The dog breed is " + breed);
 }
 
 // Function to fetch random dog image
