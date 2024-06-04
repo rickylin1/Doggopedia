@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ask anything!</title>
     <link rel = "stylesheet" href = "style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Underdog&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* CSS for fixing header at the top */
-        header {
+         header {
             position: fixed;
             top: 0;
             width: 100%;
@@ -17,9 +16,53 @@
             z-index: 1000; /* Adjust as needed */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
+        
         body {
-            padding-top: 60px; /* Adjust according to header height */
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -35,14 +78,59 @@
         </nav>
     </header>
 
+<div class="container">
+    <h1>Ask Anything!</h1>
 
-    <div>
-        
-    </div>
-    
+    <form id="postForm">
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message">
+        <button type="submit">Send POST Request</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("postForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Get the message from the form input
+        const message = document.getElementById("message").value;
+
+        // Define the data to be sent in the POST request
+        const data = {
+            message: message
+        };
+
+        //connect to local server run by node/express in the js file
+        const url = "http://localhost:8000/";
+
+        // Define the options for the POST request
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        };
+
+        // Send the POST request using fetch
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Response from server:", data);
+                alert("Response from server: " + JSON.stringify(data));
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Error: " + error);
+            });
+
+        // Clear the form input after submitting
+        document.getElementById("message").value = "";
+    });
+</script>
+
 </body>
 
-<footer>
-    <p>woof! woof! woof! woof! woof! woof! woof! woof! woof! woof! woof! woof! woof! woof! woof! woof!</p>
-</footer>
 </html>
+
+

@@ -1,3 +1,6 @@
+
+//COMPUTER VISION OF APP TELLING U WHAT DOG IT IS WHEN U USE CAMERA?
+
 // Listen for the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function() {
     // Code to execute when the DOM is fully loaded
