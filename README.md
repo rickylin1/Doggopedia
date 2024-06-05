@@ -22,10 +22,19 @@ npm install
 ```
 touch .env
 nano .env
-OPENAI_API_KEY=your_actual_api_key_here
+OPENAI_API_KEY=your_actual_api_key_here (case sensitive, make sure it matches)
 (command x to exit the nano editor)
 node chatbot.js (run the node server with chatbot)
 ```
+Note: run echo to check if you have already exported it, which is another option to manually get the env instead of running it in script 
+```bash
+echo $OPENAI_API_KEY
+```
+If already set and it's wrong, just unset it 
+```
+unset OPENAI_API_KEY
+```
+
 3. Open the homepage
  ```
 open ./index.html
