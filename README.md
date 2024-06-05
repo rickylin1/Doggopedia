@@ -17,16 +17,17 @@ Doggopedia is a frontend application run on Node JS using the fetch JS API to fe
 ```
 npm install
 ```
-2. Next, we will setup a sensitive API Key in an environment
+2. Next, we will setup a sensitive API Key in an environment and add it to an env variable
 - Every person's key is unique, so setup yours at https://openai.com/index/openai-api/
 ```
 touch .env
 nano .env
 OPENAI_API_KEY=your_actual_api_key_here (case sensitive, make sure it matches)
 (command x to exit the nano editor)
-node chatbot.js (run the node server with chatbot)
+node src/chatbot.js (run the node server with chatbot)
 ```
 Note: run echo to check if you have already exported it, which is another option to manually get the env instead of running it in script 
+also possible to just make a new .env file and add the line OPENAI_API_KEY=your_actual_api_key_here
 ```bash
 echo $OPENAI_API_KEY
 ```
