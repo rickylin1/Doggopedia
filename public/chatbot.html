@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ask anything!</title>
-    <link rel = "stylesheet" href = "style.css">
+    <link rel = "stylesheet" href = "../src/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Underdog&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -154,25 +154,25 @@
     });
 
     // This function will handle the fetch request after the POST request is completed
-async function fetchData() {
-    try {
-        const options = {
-            // Define your options here
-        };
+// async function fetchData() {
+//     try {
+//         const options = {
+//             // Define your options here
+//         };
 
-        const response = await fetch("http://localhost:8000/", options);
-        const data = await response.json();
-        console.log("Response from server:", data);
-        // Display the image in the container
-        document.getElementById("dog-image-container").innerHTML = `<img src="${data.imageUrl}" alt="Dog Image">`;
-    } catch (error) {
-        console.error("Error:", error);
-        alert("Error: " + error);
-    }
-}
+//         const response = await fetch("http://localhost:8000/", options);
+//         const data = await response.json();
+//         console.log("Response from server:", data);
+//         // Display the image in the container
+//         document.getElementById("dog-image-container").innerHTML = `<img src="${data.imageUrl}" alt="Dog Image">`;
+//     } catch (error) {
+//         console.error("Error:", error);
+//         alert("Error: " + error);
+//     }
+// }
 
-// This event listener will trigger the fetch request when the submit button is clicked
-document.getElementById("submit-button").addEventListener("click", fetchData);
+// // This event listener will trigger the fetch request when the submit button is clicked
+// document.getElementById("submit-button").addEventListener("click", fetchData);
 
 </script>
 
